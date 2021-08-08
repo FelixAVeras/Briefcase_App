@@ -1,3 +1,4 @@
+import 'package:briefcase/src/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -75,7 +76,10 @@ class _loginPageState extends State<LoginPage> {
                       ),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.0)),
-                      onPressed: () => {},
+                      onPressed: () => {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => HomePage()))
+                      },
                       color: Colors.blue,
                       textColor: Colors.white,
                     ),
