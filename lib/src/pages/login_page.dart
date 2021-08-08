@@ -21,18 +21,22 @@ class _loginPageState extends State<LoginPage> {
             child: ListView(padding: EdgeInsets.all(8.0), children: [
       Center(
         child: Container(
+          margin: EdgeInsets.only(top: 58.0),
           padding: EdgeInsets.all(8.0),
           child: Column(children: [
             Image.asset('assets/briefcase.png'),
             SizedBox(height: 15.0),
             Text('Briefcase',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28.0)),
-            SizedBox(height: 30.0),
-            Text('Iniciar Sesion',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 24.0,
-                    fontStyle: FontStyle.italic)),
+                    fontSize: 28.0,
+                    color: Colors.blue)),
+            // SizedBox(height: 30.0),
+            // Text('Iniciar Sesion',
+            //     style: TextStyle(
+            //         fontWeight: FontWeight.bold,
+            //         fontSize: 24.0,
+            //         fontStyle: FontStyle.italic)),
             SizedBox(height: 15.0),
             Container(
               child: Column(children: [
@@ -83,7 +87,6 @@ class _loginPageState extends State<LoginPage> {
                       color: Colors.blue,
                       textColor: Colors.white,
                     ),
-                    SizedBox(height: 25.0),
                     // RaisedButton(
                     //   child: Text('Registro de Usuario'),
                     //   padding: EdgeInsets.symmetric(

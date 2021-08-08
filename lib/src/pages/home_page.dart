@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: _loadPage(currentIndex),
-      bottomNavigationBar: _customBottomNavigationBar(),
+      // bottomNavigationBar: _customBottomNavigationBar(),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () => {
@@ -44,35 +44,47 @@ class _HomePageState extends State<HomePage> {
         children: [
           DrawerHeader(
             decoration: BoxDecoration(
-                // color: Colors.red,
-                // image: DecorationImage(
-                //     image: AssetImage('assets/drawerHeaderBG.jpg'),
-                //     fit: BoxFit.cover)
-                ),
-            child: Text('Briefcase'),
+              color: Colors.blue,
+              // image: DecorationImage(
+              //     image: AssetImage('assets/drawerHeaderBG.jpg'),
+              //     fit: BoxFit.cover)
+            ),
+            child: Text('Briefcase',
+                style: TextStyle(color: Colors.white, fontSize: 24)),
           ),
+          ListTile(
+            leading: Icon(Icons.bar_chart),
+            title: Text('Cuentas'),
+            onTap: () => {Navigator.of(context).pop()},
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.check_circle),
+            title: Text('Metas'),
+            onTap: () => {Navigator.of(context).pop()},
+          ),
+          Divider(),
           ListTile(
             leading: Icon(Icons.access_time),
             title: Text('Historial'),
-            onTap: () => {},
+            onTap: () => {
+              Navigator.of(context).pop(),
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => HistoryPage()))
+            },
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.verified),
-            title: Text('Ofertas'),
-            onTap: () => {},
-          ),
-          Divider(),
-          ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('Ajustes'),
-            onTap: () => {},
+            leading: Icon(Icons.credit_card),
+            title: Text('Tarjetas y Cuentas'),
+            onTap: () => {Navigator.of(context).pop()},
           ),
           Divider(),
           ListTile(
             leading: Icon(Icons.logout),
             title: Text('Cerrar Sesión'),
             onTap: () => {
+              Navigator.of(context).pop(),
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => LoginPage()))
             },
@@ -94,19 +106,19 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  Widget _customBottomNavigationBar() {
-    return BottomNavigationBar(
-      currentIndex: currentIndex,
-      onTap: (index) {
-        setState(() {
-          currentIndex = index;
-        });
-      },
-      items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.access_time), label: 'Historial')
-      ],
-    );
-  }
+  // Widget _customBottomNavigationBar() {
+  //   return BottomNavigationBar(
+  //     currentIndex: currentIndex,
+  //     onTap: (index) {
+  //       setState(() {
+  //         currentIndex = index;
+  //       });
+  //     },
+  //     items: [
+  //       BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
+  //       BottomNavigationBarItem(
+  //           icon: Icon(Icons.access_time), label: 'Historial')
+  //     ],
+  //   );
+  // }
 }

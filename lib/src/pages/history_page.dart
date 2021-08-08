@@ -4,6 +4,9 @@ class HistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Briefcase - Historial'),
+      ),
       body: Center(child: Text('Historial')),
     );
   }
