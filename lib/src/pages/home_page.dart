@@ -1,6 +1,7 @@
 import 'package:briefcase/src/pages/dashboard_page.dart';
 import 'package:briefcase/src/pages/history_page.dart';
 import 'package:briefcase/src/pages/login_page.dart';
+import 'package:briefcase/src/pages/transaction_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -31,11 +32,12 @@ class _HomePageState extends State<HomePage> {
       ),
       body: _loadPage(currentIndex),
       // bottomNavigationBar: _customBottomNavigationBar(),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+      floatingActionButton: FloatingActionButton.extended(
+        icon: Icon(Icons.add),
+        label: Text('Nueva Transaccion'),
         onPressed: () => {
-          // Navigator.push(
-          //     context, MaterialPageRoute(builder: (context) => ProductPage()))
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => TransactionPage()))
         },
       ),
       drawer: Drawer(
@@ -54,7 +56,7 @@ class _HomePageState extends State<HomePage> {
           ),
           ListTile(
             leading: Icon(Icons.bar_chart),
-            title: Text('Cuentas'),
+            title: Text('Transacciones'),
             onTap: () => {Navigator.of(context).pop()},
           ),
           Divider(),

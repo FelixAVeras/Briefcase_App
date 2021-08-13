@@ -21,22 +21,24 @@ class _loginPageState extends State<LoginPage> {
             child: ListView(padding: EdgeInsets.all(8.0), children: [
       Center(
         child: Container(
-          margin: EdgeInsets.only(top: 58.0),
+          margin: EdgeInsets.only(top: 10.0),
           padding: EdgeInsets.all(8.0),
           child: Column(children: [
-            Image.asset('assets/briefcase.png'),
-            SizedBox(height: 15.0),
-            Text('Briefcase',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 28.0,
-                    color: Colors.blue)),
-            // SizedBox(height: 30.0),
-            // Text('Iniciar Sesion',
-            //     style: TextStyle(
-            //         fontWeight: FontWeight.bold,
-            //         fontSize: 24.0,
-            //         fontStyle: FontStyle.italic)),
+            Container(
+              color: Colors.blue,
+              width: MediaQuery.of(context).size.width * 0.99,
+              child: Column(
+                children: [
+                  Image.asset('assets/briefcase.png'),
+                  SizedBox(height: 15.0),
+                  Text('Briefcase',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 28.0,
+                          color: Colors.blue)),
+                ],
+              ),
+            ),
             SizedBox(height: 15.0),
             Container(
               child: Column(children: [
@@ -46,24 +48,29 @@ class _loginPageState extends State<LoginPage> {
                     TextFormField(
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
-                          // border: OutlineInputBorder(),
+                          icon: Icon(
+                            Icons.alternate_email,
+                            color: Colors.blue,
+                          ),
                           labelText: 'Correo Electronico',
-                          prefixIcon: Icon(Icons.alternate_email),
                           hintText: 'ejemplo@ejemplo.com'),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Introduzca un email valido';
+                          return 'Introduzca un Correo valido';
                         }
                         return null;
                       },
                     ),
                     SizedBox(height: 25.0),
                     TextFormField(
+                      keyboardType: TextInputType.emailAddress,
                       obscureText: true,
                       decoration: InputDecoration(
-                          // border: OutlineInputBorder(),
-                          labelText: 'Contraseña',
-                          prefixIcon: Icon(Icons.lock_outline_rounded)),
+                          icon: Icon(
+                            Icons.lock_outline,
+                            color: Colors.blue,
+                          ),
+                          labelText: 'Contraseña'),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Introduzca una contraseña valida';
@@ -87,16 +94,9 @@ class _loginPageState extends State<LoginPage> {
                       color: Colors.blue,
                       textColor: Colors.white,
                     ),
-                    // RaisedButton(
-                    //   child: Text('Registro de Usuario'),
-                    //   padding: EdgeInsets.symmetric(
-                    //       horizontal: 80.0, vertical: 15.0),
-                    //   shape: RoundedRectangleBorder(
-                    //       borderRadius: BorderRadius.circular(5.0)),
-                    //   color: Colors.white,
-                    //   textColor: Colors.blue,
-                    //   onPressed: () {},
-                    // ),
+                    SizedBox(height: 10),
+                    OutlinedButton(
+                        onPressed: () => {}, child: Text('Registrar Usuario'))
                   ]),
                 )
               ]),
