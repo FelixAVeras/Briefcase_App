@@ -45,15 +45,15 @@ class TransactionPage extends StatelessWidget {
                   keyboardType: TextInputType.number,
                 ),
                 SizedBox(height: 100.0),
-                ButtonTheme(
-                  height: 40.0,
-                  minWidth: 400.0,
-                  child: OutlineButton.icon(
+                ElevatedButton.icon(
                     icon: Icon(Icons.save),
-                    label: Text('Guardar Cambios'),
-                    onPressed: () => {},
-                  ),
-                )
+                    label: Text('Guardar'),
+                    style: ElevatedButton.styleFrom(
+                        onPrimary: Colors.white,
+                        primary: Colors.green[700],
+                        padding: EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 100.0)),
+                    onPressed: () => {})
               ],
             ),
           )

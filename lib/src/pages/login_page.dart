@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
   @override
-  _loginPageState createState() => _loginPageState();
+  LoginPageState createState() => LoginPageState();
 }
 
-class _loginPageState extends State<LoginPage> {
+class LoginPageState extends State<LoginPage> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -95,8 +95,21 @@ class _loginPageState extends State<LoginPage> {
                       textColor: Colors.white,
                     ),
                     SizedBox(height: 10),
-                    OutlinedButton(
-                        onPressed: () => {}, child: Text('Registrar Usuario'))
+                    RaisedButton(
+                      child: Container(
+                        child: Text('Registrar Usuario'),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 80.0, vertical: 15.0),
+                      ),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0)),
+                      onPressed: () => {
+                        // Navigator.push(context,
+                        //     MaterialPageRoute(builder: (context) => HomePage()))
+                      },
+                      color: Colors.white,
+                      textColor: Colors.blue,
+                    )
                   ]),
                 )
               ]),
