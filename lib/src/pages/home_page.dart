@@ -21,18 +21,20 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        backgroundColor: Colors.blue[800],
         title: Text('Briefcase'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications),
-            tooltip: 'Notificaciones',
-            onPressed: () {},
-          )
-        ],
+        // actions: [
+        //   IconButton(
+        //     icon: const Icon(Icons.notifications),
+        //     tooltip: 'Notificaciones',
+        //     onPressed: () {},
+        //   )
+        // ],
       ),
       body: _loadPage(currentIndex),
       // bottomNavigationBar: _customBottomNavigationBar(),
       floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: Colors.blue[800],
         icon: Icon(Icons.add),
         label: Text('Nueva Transaccion'),
         onPressed: () => {
@@ -46,10 +48,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           DrawerHeader(
             decoration: BoxDecoration(
-              color: Colors.blue,
-              // image: DecorationImage(
-              //     image: AssetImage('assets/drawerHeaderBG.jpg'),
-              //     fit: BoxFit.cover)
+              color: Colors.blue[800],
             ),
             child: Text('Briefcase',
                 style: TextStyle(color: Colors.white, fontSize: 24)),

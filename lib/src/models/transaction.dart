@@ -1,15 +1,15 @@
 import 'package:briefcase/src/helpers/db_helper.dart';
 
-class Transaction {
+class TransactionModel {
   int id;
   String titleTransaction;
-  double amountTransaction;
+  int amountTransaction;
   String dateTransaction;
 
-  Transaction(this.id, this.titleTransaction, this.amountTransaction,
+  TransactionModel(this.id, this.titleTransaction, this.amountTransaction,
       this.dateTransaction);
 
-  Transaction.fromMap(Map<String, dynamic> map) {
+  TransactionModel.fromMap(Map<String, dynamic> map) {
     id = map['id'];
     titleTransaction = map['titleTransaction'];
     amountTransaction = map['amountTransaction'];

@@ -1,3 +1,4 @@
+import 'package:briefcase/src/models/transaction.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -28,7 +29,7 @@ class DatabaseHelper {
   }
 
   _initDatabase() async {
-    String path = join(await getDatabasePath(), _databaseName);
+    String path = join(await getDatabasesPath(), _databaseName);
 
     return await openDatabase(path,
         version: _databaseVersion, onCreate: _onCreate);
@@ -45,9 +46,13 @@ class DatabaseHelper {
           ''');
   }
 
-  Future<int> insert(Transaction transaction) async {
+  Future<int> insert(TransactionModel transaction) async {
     Database db = await instance.database;
-    return await db.insert(table, {'name': car.name, 'miles': car.miles});
+    return await db.insert(table, {
+      'titleTransaction': transaction.titleTransaction,
+      'amountTransaction': transaction.amountTransaction,
+      'dateTransaction': transaction.dateTransaction,
+    });
   }
 
   Future<List<Map<String, dynamic>>> queryAllRows() async {
@@ -55,26 +60,26 @@ class DatabaseHelper {
     return await db.query(table);
   }
 
-  Future<List<Map<String, dynamic>>> queryRows(name) async {
-    Database db = await instance.database;
-    return await db.query(table, where: "$columnName LIKE '%$name%'");
-  }
+  // Future<List<Map<String, dynamic>>> queryRows(name) async {
+  //   Database db = await instance.database;
+  //   return await db.query(table, where: "$columnName LIKE '%$name%'");
+  // }
 
-  Future<int> queryRowCount() async {
-    Database db = await instance.database;
-    return Sqflite.firstIntValue(
-        await db.rawQuery('SELECT COUNT(*) FROM $table'));
-  }
+  // Future<int> queryRowCount() async {
+  //   Database db = await instance.database;
+  //   return Sqflite.firstIntValue(
+  //       await db.rawQuery('SELECT COUNT(*) FROM $table'));
+  // }
 
-  Future<int> update(Car car) async {
-    Database db = await instance.database;
-    int id = car.toMap()['id'];
-    return await db
-        .update(table, car.toMap(), where: '$columnId = ?', whereArgs: [id]);
-  }
+  // Future<int> update(Car car) async {
+  //   Database db = await instance.database;
+  //   int id = car.toMap()['id'];
+  //   return await db
+  //       .update(table, car.toMap(), where: '$columnId = ?', whereArgs: [id]);
+  // }
 
-  Future<int> delete(int id) async {
-    Database db = await instance.database;
-    return await db.delete(table, where: '$columnId = ?', whereArgs: [id]);
-  }
+  // Future<int> delete(int id) async {
+  //   Database db = await instance.database;
+  //   return await db.delete(table, where: '$columnId = ?', whereArgs: [id]);
+  // }
 }
