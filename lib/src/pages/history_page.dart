@@ -8,7 +8,7 @@ class HistoryPage extends StatefulWidget {
 }
 
 class HistoryPageState extends State<HistoryPage> {
-  final dbHelper = DatabaseHelper.instance;
+  // final dbHelper = DatabaseHelper.instance;
   List<TransactionModel> transactions = [];
 
   var now = new DateTime.now();

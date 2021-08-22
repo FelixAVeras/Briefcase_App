@@ -53,12 +53,18 @@ class _HomePageState extends State<HomePage> {
             child: Text('Briefcase',
                 style: TextStyle(color: Colors.white, fontSize: 24)),
           ),
-          // ListTile(
-          //   leading: Icon(Icons.bar_chart),
-          //   title: Text('Transacciones'),
-          //   onTap: () => {Navigator.of(context).pop()},
-          // ),
-          // Divider(),
+          ListTile(
+            leading: Icon(Icons.person),
+            title: Text('Mi perfil'),
+            onTap: () => {Navigator.of(context).pop()},
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.grid_view),
+            title: Text('Categorias'),
+            onTap: () => {Navigator.of(context).pop()},
+          ),
+          Divider(),
           ListTile(
             leading: Icon(Icons.check_circle),
             title: Text('Metas'),

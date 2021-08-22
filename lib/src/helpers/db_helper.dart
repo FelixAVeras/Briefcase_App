@@ -1,85 +1,86 @@
+import 'dart:async';
+
 import 'package:briefcase/src/models/transaction.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
-  static final _databaseName = "briefcasedb.db";
-  static final _databaseVersion = 1;
+  Database database;
 
-  static final table = 'transactions_table';
-
-  static final columnIdTransaction = 'id';
-  static final columnTitleTransaction = 'titleTransaction';
-  static final columnAmountTransaction = 'amountTransaction';
-  static final columnDateTransaction = 'dateTransaction';
-
-  DatabaseHelper._privateConstructor();
-  static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
-
-  static Database _database;
-
-  Future<Database> get database async {
-    if (_database != null) {
-      return _database;
+  Future initDB() async {
+    if (database != null) {
+      return database;
     }
 
-    _database = await _initDatabase();
+    String databasesPath = await getDatabasesPath();
 
-    return _database;
+    database = await openDatabase(
+      join(databasesPath, 'briefcasedb.db'),
+      onCreate: (db, version) {
+        return db.execute(
+          "CREATE TABLE trans(id INTEGER PRIMARY KEY, date TEXT, name TEXT, type TEXT, amount INTEGER)",
+        );
+      },
+      version: 1,
+    );
+
+    return database;
   }
 
-  _initDatabase() async {
-    String path = join(await getDatabasesPath(), _databaseName);
+  Future<TransactionModel> insertTrans(TransactionModel trans) async {
+    final Database db = database;
 
-    return await openDatabase(path,
-        version: _databaseVersion, onCreate: _onCreate);
+    await db.insert(
+      'trans',
+      trans.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
-  Future _onCreate(Database db, int version) async {
-    await db.execute('''
-          CREATE TABLE $table (
-            $columnIdTransaction INTEGER PRIMARY KEY AUTOINCREMENT,
-            $columnTitleTransaction TEXT NOT NULL,
-            $columnAmountTransaction INTEGER NOT NULL,
-            $columnDateTransaction TEXT NOT NULL
-          )
-          ''');
-  }
+  Future<List<TransactionModel>> trans() async {
+    final Database db = database;
 
-  Future<int> insert(TransactionModel transaction) async {
-    Database db = await instance.database;
-    return await db.insert(table, {
-      'titleTransaction': transaction.titleTransaction,
-      'amountTransaction': transaction.amountTransaction,
-      'dateTransaction': transaction.dateTransaction,
+    final List<Map<String, dynamic>> maps = await db.query('trans');
+
+    return List.generate(maps.length, (i) {
+      return TransactionModel(
+        id: maps[i]['id'],
+        dateTransaction: maps[i]['date'],
+        titleTransaction: maps[i]['name'],
+        typeTransaction: maps[i]['type'],
+        amountTransaction: maps[i]['amount'],
+      );
     });
   }
 
-  Future<List<Map<String, dynamic>>> queryAllRows() async {
-    Database db = await instance.database;
-    return await db.query(table);
+  Future<int> countTotal() async {
+    final Database db = database;
+    final int sumEarning = Sqflite.firstIntValue(await db
+        .rawQuery('SELECT SUM(amount) FROM trans WHERE type = "earning"'));
+    final int sumExpense = Sqflite.firstIntValue(await db
+        .rawQuery('SELECT SUM(amount) FROM trans WHERE type = "expense"'));
+    return ((sumEarning == null ? 0 : sumEarning) -
+        (sumExpense == null ? 0 : sumExpense));
   }
 
-  // Future<List<Map<String, dynamic>>> queryRows(name) async {
-  //   Database db = await instance.database;
-  //   return await db.query(table, where: "$columnName LIKE '%$name%'");
-  // }
+  Future<void> updateTrans(TransactionModel trans) async {
+    final db = database;
 
-  // Future<int> queryRowCount() async {
-  //   Database db = await instance.database;
-  //   return Sqflite.firstIntValue(
-  //       await db.rawQuery('SELECT COUNT(*) FROM $table'));
-  // }
+    await db.update(
+      'trans',
+      trans.toMap(),
+      where: "id = ?",
+      whereArgs: [trans.id],
+    );
+  }
 
-  // Future<int> update(Car car) async {
-  //   Database db = await instance.database;
-  //   int id = car.toMap()['id'];
-  //   return await db
-  //       .update(table, car.toMap(), where: '$columnId = ?', whereArgs: [id]);
-  // }
+  Future<void> deleteTrans(int id) async {
+    final db = await database;
 
-  // Future<int> delete(int id) async {
-  //   Database db = await instance.database;
-  //   return await db.delete(table, where: '$columnId = ?', whereArgs: [id]);
-  // }
+    await db.delete(
+      'trans',
+      where: "id = ?",
+      whereArgs: [id],
+    );
+  }
 }
