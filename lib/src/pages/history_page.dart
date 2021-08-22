@@ -31,7 +31,7 @@ class HistoryPageState extends State<HistoryPage> {
             return TextButton.icon(
                 onPressed: () {
                   setState(() {
-                    _queryAll();
+                    // _queryAll();
                   });
                 },
                 icon: Icon(Icons.refresh),
@@ -47,11 +47,11 @@ class HistoryPageState extends State<HistoryPage> {
     );
   }
 
-  void _queryAll() async {
-    final allRows = await dbHelper.queryAllRows();
-    transactions.clear();
+  // void _queryAll() async {
+  //   final allRows = await dbHelper.queryAllRows();
+  //   transactions.clear();
 
-    allRows.forEach((row) => transactions.add(TransactionModel.fromMap(row)));
-    setState(() {});
-  }
+  //   allRows.forEach((row) => transactions.add(TransactionModel.fromMap(row)));
+  //   setState(() {});
+  // }
 }
