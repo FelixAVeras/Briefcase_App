@@ -24,25 +24,9 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         backgroundColor: Colors.blue[800],
         title: Text('Briefcase'),
-        // actions: [
-        //   IconButton(
-        //     icon: const Icon(Icons.notifications),
-        //     tooltip: 'Notificaciones',
-        //     onPressed: () {},
-        //   )
-        // ],
       ),
-      body: _loadPage(currentIndex),
-      // bottomNavigationBar: _customBottomNavigationBar(),
-      // floatingActionButton: FloatingActionButton.extended(
-      //   backgroundColor: Colors.blue[800],
-      //   icon: Icon(Icons.add),
-      //   label: Text('Nueva Transaccion'),
-      //   onPressed: () => {
-      //     Navigator.push(context,
-      //         MaterialPageRoute(builder: (context) => TransactionPage()))
-      //   },
-      // ),
+      // body: _loadPage(currentIndex),
+      body: DashboardPage(),
       drawer: Drawer(
           child: ListView(
         padding: EdgeInsets.zero,
@@ -117,17 +101,17 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _loadPage(int currentPage) {
-    switch (currentPage) {
-      case 0:
-        return DashboardPage();
-      case 1:
-        return HistoryPage();
+  // Widget _loadPage(int currentPage) {
+  //   switch (currentPage) {
+  //     case 0:
+  //       return DashboardPage();
+  //     case 1:
+  //       return HistoryPage();
 
-      default:
-        return DashboardPage();
-    }
-  }
+  //     default:
+  //       return DashboardPage();
+  //   }
+  // }
 
   // Widget _customBottomNavigationBar() {
   //   return BottomNavigationBar(

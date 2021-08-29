@@ -54,10 +54,9 @@ class TransactionHistoryPage extends StatelessWidget {
                 return Padding(
                   padding: EdgeInsets.symmetric(horizontal: 3.0, vertical: 3.0),
                   child: Card(
-                    elevation: 5,
                     margin: EdgeInsets.symmetric(
                       vertical: 1.0,
-                      horizontal: 15.0,
+                      horizontal: 5.0,
                     ),
                     child: InkWell(
                       onTap: () {},
@@ -67,7 +66,7 @@ class TransactionHistoryPage extends StatelessWidget {
                           height: 50.0,
                           padding: EdgeInsets.all(3.0),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6.0),
+                            borderRadius: BorderRadius.circular(5.0),
                             color: Colors.green[700],
                           ),
                           child: FittedBox(
@@ -86,7 +85,7 @@ class TransactionHistoryPage extends StatelessWidget {
                           txn.txnTitle,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 20.0,
+                            fontSize: 16.0,
                           ),
                         ),
                         subtitle: Text(
