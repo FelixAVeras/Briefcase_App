@@ -1,3 +1,4 @@
+import 'package:briefcase/src/pages/categories/category_page.dart';
 import 'package:briefcase/src/pages/dashboard_page.dart';
 import 'package:briefcase/src/pages/history_page.dart';
 import 'package:briefcase/src/pages/login_page.dart';
@@ -33,15 +34,15 @@ class _HomePageState extends State<HomePage> {
       ),
       body: _loadPage(currentIndex),
       // bottomNavigationBar: _customBottomNavigationBar(),
-      floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: Colors.blue[800],
-        icon: Icon(Icons.add),
-        label: Text('Nueva Transaccion'),
-        onPressed: () => {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => TransactionPage()))
-        },
-      ),
+      // floatingActionButton: FloatingActionButton.extended(
+      //   backgroundColor: Colors.blue[800],
+      //   icon: Icon(Icons.add),
+      //   label: Text('Nueva Transaccion'),
+      //   onPressed: () => {
+      //     Navigator.push(context,
+      //         MaterialPageRoute(builder: (context) => TransactionPage()))
+      //   },
+      // ),
       drawer: Drawer(
           child: ListView(
         padding: EdgeInsets.zero,
@@ -60,9 +61,24 @@ class _HomePageState extends State<HomePage> {
           ),
           Divider(),
           ListTile(
+              leading: Icon(Icons.sync_alt),
+              title: Text('Transacciones'),
+              onTap: () => {
+                    Navigator.of(context).pop(),
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TransactionPage()))
+                  }),
+          Divider(),
+          ListTile(
             leading: Icon(Icons.grid_view),
             title: Text('Categorias'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {
+              Navigator.of(context).pop(),
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => CategoryPage()))
+            },
           ),
           Divider(),
           ListTile(
