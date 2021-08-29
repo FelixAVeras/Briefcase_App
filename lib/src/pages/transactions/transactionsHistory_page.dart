@@ -44,19 +44,7 @@ class TransactionHistoryPage extends StatelessWidget {
                         fontSize: 18.0,
                         fontFamily: "Quicksand",
                       ),
-                    ))
-                    // child: FittedBox(
-                    //   fit: BoxFit.scaleDown,
-                    //   child: Text(
-                    //     "Sin datos que Mostrar",
-                    //     style: TextStyle(
-                    //       color: Colors.grey,
-                    //       fontSize: 18.0,
-                    //       fontFamily: "Quicksand",
-                    //     ),
-                    //   ),
-                    // ),
-                    ),
+                    ))),
               ],
             )
           : ListView.builder(
@@ -85,7 +73,7 @@ class TransactionHistoryPage extends StatelessWidget {
                           child: FittedBox(
                             fit: BoxFit.contain,
                             child: Text(
-                              '${txn.txnAmount}',
+                              '\$${txn.txnAmount}',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18.0,
@@ -97,7 +85,6 @@ class TransactionHistoryPage extends StatelessWidget {
                         title: Text(
                           txn.txnTitle,
                           style: TextStyle(
-                            fontFamily: "Quicksand",
                             fontWeight: FontWeight.bold,
                             fontSize: 20.0,
                           ),

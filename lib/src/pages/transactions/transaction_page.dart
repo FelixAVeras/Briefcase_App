@@ -70,31 +70,78 @@ class TransactionPageState extends State<TransactionPage> {
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData mediaQueryData = MediaQuery.of(context);
+    final bool isLandscape =
+        mediaQueryData.orientation == Orientation.landscape;
+
+    final double availableHeight = mediaQueryData.size.height -
+        mediaQueryData.padding.top -
+        mediaQueryData.padding.bottom;
+
+    final double availableWidth = mediaQueryData.size.width -
+        mediaQueryData.padding.left -
+        mediaQueryData.padding.right;
+
+    Widget myTransactionListContainer({double height, double width}) {
+      return Container(
+        height: height,
+        width: width,
+        child: TransactionHistoryPage(_userTransactions, _deleteTransaction),
+      );
+    }
+
     return DefaultTabController(
         length: 2,
         child: Scaffold(
           appBar: AppBar(
             centerTitle: true,
             backgroundColor: Colors.blue[800],
-            // bottom: TabBar(
-            //   tabs: [
-            //     Tab(text: 'Nueva Transacciones'),
-            //     Tab(text: 'Historial de trans.')
-            //   ],
-            //   indicatorWeight: 3,
-            //   indicatorColor: Colors.white,
-            //   unselectedLabelColor: Colors.white,
-            // ),
             title: Text('Transacciones'),
           ),
-          // body: TabBarView(children: [
-          //   TransactionFormPage(_addNewTransaction),
-          //   TransactionHistoryPage(_userTransactions, _deleteTransaction)
-          // ]),
-          body: TransactionHistoryPage(_userTransactions, _deleteTransaction),
-          floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.add),
-            tooltip: "Add New Transaction",
+          // body: TransactionHistoryPage(_userTransactions, _deleteTransaction),
+          // floatingActionButtonLocation:
+          //     FloatingActionButtonLocation.centerFloat,
+          // floatingActionButton: FloatingActionButton.extended(
+          //   icon: Icon(Icons.add),
+          //   label: Text('Nueva Transaccion'),
+          //   backgroundColor: Colors.blue[800],
+          //   onPressed: () => _startAddNewTransaction(context),
+          // ),
+
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                if (isLandscape)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Show Chart",
+                        style: TextStyle(
+                          fontFamily: "Rubik",
+                          fontSize: 16.0,
+                          color: Colors.grey[500],
+                        ),
+                      ),
+                    ],
+                  ),
+                if (isLandscape)
+                  myTransactionListContainer(
+                      height: availableHeight * 0.8,
+                      width: 0.6 * availableWidth),
+                if (!isLandscape)
+                  myTransactionListContainer(
+                      height: availableHeight * 0.7, width: availableWidth),
+              ],
+            ),
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
+          floatingActionButton: FloatingActionButton.extended(
+            icon: Icon(Icons.add),
+            label: Text('Nueva Transaccion'),
+            backgroundColor: Colors.blue[800],
             onPressed: () => _startAddNewTransaction(context),
           ),
         ));
