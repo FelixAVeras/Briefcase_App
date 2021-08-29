@@ -292,10 +292,11 @@ class TransactionFormPageState extends State<TransactionFormPage> {
             TextFormField(
               decoration: InputDecoration(
                 labelText: 'Titulo Transaccion',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(11.0)),
-                ),
-                prefixIcon: Icon(Icons.title),
+                // border: OutlineInputBorder(
+                //   borderRadius: BorderRadius.all(Radius.circular(11.0)),
+                // ),
+                // prefixIcon: Icon(Icons.title),
+                icon: Icon(Icons.title),
                 hintText: "Ej: Compra de Zapatos",
               ),
               validator: (value) {
@@ -318,10 +319,11 @@ class TransactionFormPageState extends State<TransactionFormPage> {
               focusNode: _amountFocus,
               decoration: InputDecoration(
                 labelText: 'Monto de la trasnsaccion',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(11.0)),
-                ),
-                prefixIcon: Icon(Icons.local_atm),
+                // border: OutlineInputBorder(
+                //   borderRadius: BorderRadius.all(Radius.circular(11.0)),
+                // ),
+                // prefixIcon: Icon(Icons.local_atm),
+                icon: Icon(Icons.local_atm),
                 hintText: "Ej: 1255.32",
               ),
               autovalidate: _autoValidateToggle,
@@ -355,13 +357,14 @@ class TransactionFormPageState extends State<TransactionFormPage> {
                         focusNode: _dateFocus,
                         keyboardType: TextInputType.datetime,
                         decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(11.0)),
-                          ),
+                          // border: OutlineInputBorder(
+                          //   borderRadius:
+                          //       BorderRadius.all(Radius.circular(11.0)),
+                          // ),
+                          // prefixIcon: Icon(Icons.calendar_today),
                           labelText: 'Fecha',
                           hintText: 'Fecha de la transaccion',
-                          prefixIcon: Icon(Icons.calendar_today),
+                          icon: Icon(Icons.calendar_today),
                           suffixIcon: Icon(Icons.arrow_drop_down),
                         ),
                         autovalidate: _autoValidateToggle,
@@ -388,13 +391,14 @@ class TransactionFormPageState extends State<TransactionFormPage> {
                         focusNode: _timeFocus,
                         keyboardType: TextInputType.datetime,
                         decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(11.0)),
-                          ),
+                          // border: OutlineInputBorder(
+                          //   borderRadius:
+                          //       BorderRadius.all(Radius.circular(11.0)),
+                          // ),
+                          // prefixIcon: Icon(Icons.schedule),
                           labelText: 'Hora',
                           hintText: 'Hora de la Transaccion',
-                          prefixIcon: Icon(Icons.schedule),
+                          icon: Icon(Icons.schedule),
                           suffixIcon: Icon(Icons.arrow_drop_down),
                         ),
                         autovalidate: _autoValidateToggle,
