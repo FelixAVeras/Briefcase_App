@@ -3,6 +3,7 @@ import 'package:briefcase/src/pages/dashboard_page.dart';
 import 'package:briefcase/src/pages/history_page.dart';
 import 'package:briefcase/src/pages/login_page.dart';
 import 'package:briefcase/src/pages/transactions/transaction_page.dart';
+import 'package:briefcase/src/pages/product_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -96,6 +97,15 @@ class _HomePageState extends State<HomePage> {
                   context, MaterialPageRoute(builder: (context) => LoginPage()))
             },
           ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.book),
+            title: Text('Productos'),
+            onTap: () => {
+              Navigator.of(context).pop(),
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ProductPage()))
+            },
+          )
         ],
       )),
     );
