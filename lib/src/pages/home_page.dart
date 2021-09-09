@@ -2,11 +2,8 @@ import 'package:briefcase/src/pages/categories/category_page.dart';
 import 'package:briefcase/src/pages/dashboard_page.dart';
 import 'package:briefcase/src/pages/history_page.dart';
 import 'package:briefcase/src/pages/login_page.dart';
-<<<<<<< HEAD
-=======
 import 'package:briefcase/src/pages/perfil/profile_page.dart';
 import 'package:briefcase/src/pages/products/product_page.dart';
->>>>>>> master
 import 'package:briefcase/src/pages/transactions/transaction_page.dart';
 import 'package:flutter/material.dart';
 
@@ -46,8 +43,11 @@ class _HomePageState extends State<HomePage> {
           ListTile(
             leading: Icon(Icons.person),
             title: Text('Mi perfil'),
-<<<<<<< HEAD
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {
+              Navigator.of(context).pop(),
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ProfilePage())),
+            },
           ),
           Divider(),
           ListTile(
@@ -62,59 +62,26 @@ class _HomePageState extends State<HomePage> {
                   }),
           Divider(),
           ListTile(
-=======
-            onTap: () => {
-              Navigator.of(context).pop(),
-              Navigator.push(context,
-                MaterialPageRoute(builder: (context) => ProfilePage())
-              ),
-            },
-          ),
-          Divider(),
-          ListTile(
-            leading: Icon(Icons.sync_alt),
-            title: Text('Transacciones'),
-            onTap: () => {
-              Navigator.of(context).pop(),
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => TransactionPage())
-              )
-            }
-          ),
-          Divider(),
-          ListTile(
->>>>>>> master
             leading: Icon(Icons.grid_view),
             title: Text('Categorias'),
             onTap: () => {
               Navigator.of(context).pop(),
               Navigator.push(context,
-<<<<<<< HEAD
                   MaterialPageRoute(builder: (context) => CategoryPage()))
-=======
-                MaterialPageRoute(builder: (context) => CategoryPage())
-              )
->>>>>>> master
             },
           ),
           Divider(),
           ListTile(
-<<<<<<< HEAD
-=======
             leading: Icon(Icons.book),
             title: Text('Productos'),
             onTap: () => {
               Navigator.of(context).pop(),
               Navigator.push(context,
-                MaterialPageRoute(builder: (context) => ProductPage())
-              )
+                  MaterialPageRoute(builder: (context) => ProductPage()))
             },
           ),
           Divider(),
           ListTile(
->>>>>>> master
             leading: Icon(Icons.check_circle),
             title: Text('Metas'),
             onTap: () => {Navigator.of(context).pop()},
