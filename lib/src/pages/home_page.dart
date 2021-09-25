@@ -1,9 +1,12 @@
+import 'dart:html';
+
 import 'package:briefcase/src/pages/categories/category_page.dart';
 import 'package:briefcase/src/pages/dashboard_page.dart';
 import 'package:briefcase/src/pages/history_page.dart';
 import 'package:briefcase/src/pages/login_page.dart';
 import 'package:briefcase/src/pages/transactions/transaction_page.dart';
-import 'package:briefcase/src/pages/product_page.dart';
+import 'package:briefcase/src/pages/products/product_page.dart';
+import 'package:briefcase/src/pages/perfil/profile_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -42,7 +45,12 @@ class _HomePageState extends State<HomePage> {
           ListTile(
             leading: Icon(Icons.person),
             title: Text('Mi perfil'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {
+              Navigator.of(context).pop(),
+              Navigator.push(context,
+                MaterialPageRoute(builder: (context) => ProfilePage())
+              ),
+            },
           ),
           Divider(),
           ListTile(
@@ -89,6 +97,15 @@ class _HomePageState extends State<HomePage> {
           ),
           Divider(),
           ListTile(
+            leading: Icon(Icons.book),
+            title: Text('Productos'),
+            onTap: () => {
+              Navigator.of(context).pop(),
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ProductPage()))
+            },
+          ),
+          Divider(),
+          ListTile(
             leading: Icon(Icons.logout),
             title: Text('Cerrar Sesión'),
             onTap: () => {
@@ -97,17 +114,24 @@ class _HomePageState extends State<HomePage> {
                   context, MaterialPageRoute(builder: (context) => LoginPage()))
             },
           ),
-          Divider(),
-          ListTile(
-            leading: Icon(Icons.book),
-            title: Text('Productos'),
-            onTap: () => {
-              Navigator.of(context).pop(),
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ProductPage()))
-            },
-          )
         ],
       )),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   items: const <BottomNavigationBarItem>[
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.home),
+      //       label: 'Home'
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.all_inbox_sharp),
+      //       label: 'Inventario'
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.account_circle),
+      //       label: 'Perfil'
+      //     ),
+      //   ],
+      // ),
     );
   }
 
