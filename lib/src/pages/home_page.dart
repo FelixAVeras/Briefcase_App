@@ -4,6 +4,8 @@ import 'package:briefcase/src/pages/categories/category_page.dart';
 import 'package:briefcase/src/pages/dashboard_page.dart';
 import 'package:briefcase/src/pages/history_page.dart';
 import 'package:briefcase/src/pages/login_page.dart';
+import 'package:briefcase/src/pages/perfil/profile_page.dart';
+import 'package:briefcase/src/pages/products/product_page.dart';
 import 'package:briefcase/src/pages/transactions/transaction_page.dart';
 import 'package:briefcase/src/pages/products/product_page.dart';
 import 'package:briefcase/src/pages/perfil/profile_page.dart';
@@ -48,8 +50,7 @@ class _HomePageState extends State<HomePage> {
             onTap: () => {
               Navigator.of(context).pop(),
               Navigator.push(context,
-                MaterialPageRoute(builder: (context) => ProfilePage())
-              ),
+                  MaterialPageRoute(builder: (context) => ProfilePage())),
             },
           ),
           Divider(),
@@ -71,6 +72,16 @@ class _HomePageState extends State<HomePage> {
               Navigator.of(context).pop(),
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => CategoryPage()))
+            },
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.book),
+            title: Text('Productos'),
+            onTap: () => {
+              Navigator.of(context).pop(),
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ProductPage()))
             },
           ),
           Divider(),
