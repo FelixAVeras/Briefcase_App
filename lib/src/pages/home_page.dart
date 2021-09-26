@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:briefcase/src/pages/categories/category_page.dart';
 import 'package:briefcase/src/pages/dashboard_page.dart';
 import 'package:briefcase/src/pages/login_page.dart';
@@ -97,6 +99,22 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       )),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   items: const <BottomNavigationBarItem>[
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.home),
+      //       label: 'Home'
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.all_inbox_sharp),
+      //       label: 'Inventario'
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.account_circle),
+      //       label: 'Perfil'
+      //     ),
+      //   ],
+      // ),
     );
   }
 }
