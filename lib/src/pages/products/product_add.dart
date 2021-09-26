@@ -5,7 +5,7 @@ class ProductAdd extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add product'),
+        title: Text('Agregar Producto'),
         centerTitle: true,
         backgroundColor: Colors.blue[800],
       ),
@@ -47,12 +47,15 @@ class ProductAdd extends StatelessWidget {
               labelText: 'Descripcion',
             ),
           ),
+          SizedBox(height: 50.0),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
                 primary: Colors.green,
                 minimumSize: Size(150, 50),
+                padding:
+                    EdgeInsets.only(left: 100, right: 100, top: 15, bottom: 15),
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30))),
+                    borderRadius: BorderRadius.circular(10.0))),
             onPressed: () {},
             child: const Text('Crear Producto'),
           ),
