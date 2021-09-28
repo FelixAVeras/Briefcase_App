@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
-class ProductAdd extends StatelessWidget {
+class ProductAdd extends StatefulWidget {
   @override
+  State<StatefulWidget> createState() => ProductAddState();
+}
+class ProductAddState extends State<ProductAdd>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

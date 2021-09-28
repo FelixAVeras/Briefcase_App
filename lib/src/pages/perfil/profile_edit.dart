@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ProfileEdit extends StatelessWidget {
+class ProfileEdit extends StatefulWidget {
   @override
+  State<StatefulWidget> createState() => ProfileEditState();
+}
+class ProfileEditState extends State<ProfileEdit>{
+  String dropdownValue;
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -27,12 +31,29 @@ class ProfileEdit extends StatelessWidget {
                     labelText: 'Apellido',
                   ),
                 ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    icon: Icon(Icons.arrow_drop_down_outlined),
-                    hintText: 'Tipo de documento',
-                    labelText: 'No seleccionado',
+                DropdownButton<String>(
+                  hint: Text('Tipo de documento'),
+                  value: dropdownValue,
+                  icon: const Icon(Icons.arrow_drop_down),
+                  iconSize: 24,
+                  elevation: 16,
+                  style: const TextStyle(color: Colors.deepPurple),
+                  underline: Container(
+                    height: 2,
+                    color: Colors.deepPurpleAccent,
                   ),
+                  onChanged: (newValue) {
+                    setState(() {
+                      dropdownValue = newValue;
+                    });
+                  },
+                  items: <String>['Cedula', 'Pasaporte']
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
                 ),
                 TextFormField(
                   decoration: const InputDecoration(
@@ -66,6 +87,9 @@ class ProfileEdit extends StatelessWidget {
                   child: const Text('Guardar'),
                 ),
               ],
-            ))));
+            )
+          )
+        )
+      );
   }
 }

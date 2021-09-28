@@ -92,13 +92,19 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../models/transaction.dart' as txn;
+import '../models/categoria.dart' as ctgy;
 
-// database table and column names
+// database table and column names Transactions
 final String tableTransactions = 'transactions';
 final String columnId = 'id';
 final String columnTitle = 'title';
 final String columnAmount = 'amount';
 final String columnDate = 'date';
+
+// database table and column names Category
+final String tableCategory = 'category';
+final String columnCId = 'id';
+final String columnCnombre = 'name';
 
 // singleton class to manage the database
 class DatabaseHelper {
@@ -107,6 +113,7 @@ class DatabaseHelper {
 
   // actual database filename that is saved in the docs directory.
   static final _databaseName = "transactionsDB.db";
+  static final _databaseCategory = "categoryDB.db";
 
   // Increment this version when you need to change the schema.
   static final _databaseVersion = 1;
@@ -123,6 +130,13 @@ class DatabaseHelper {
     return _database;
   }
 
+  Future<Database> get databaseCategory async {
+    if (_database != null) return _database;
+
+    _database = await _initDatabaseCategory();
+    return _database;
+  }
+
   // open the database
   _initDatabase() async {
     // The path_provider plugin gets the right directory for Android or iOS.
@@ -131,19 +145,38 @@ class DatabaseHelper {
     String path = join(documentsDirectory.path, _databaseName);
     // Open the database. Can also add an onUpdate callback parameter.
     return await openDatabase(path,
-        version: _databaseVersion, onCreate: _onCreate);
+      version: _databaseVersion, onCreate: _onCreate);
+  }
+
+  _initDatabaseCategory() async {
+    // The path_provider plugin gets the right directory for Android or iOS.
+    Directory documentsDirectory = await getApplicationDocumentsDirectory();
+
+    String pathCategory = join(documentsDirectory.path, _databaseCategory);
+    // Open the database. Can also add an onUpdate callback parameter.
+    return await openDatabase(pathCategory,
+      version: _databaseVersion, onCreate: _onCreateCategory);
   }
 
   // SQL string to create the database
   Future _onCreate(Database db, int version) async {
     await db.execute('''
-          CREATE TABLE $tableTransactions (
-            $columnId INTEGER PRIMARY KEY,
-            $columnTitle TEXT NOT NULL,
-            $columnAmount REAL NOT NULL,
-            $columnDate TEXT NOT NULL
-          )
-          ''');
+      CREATE TABLE $tableTransactions (
+        $columnId INTEGER PRIMARY KEY,
+        $columnTitle TEXT NOT NULL,
+        $columnAmount REAL NOT NULL,
+        $columnDate TEXT NOT NULL
+      )
+      ''');
+  }
+
+  Future _onCreateCategory(Database db, int version) async {
+    await db.execute('''
+      CREATE TABLE $tableCategory (
+        $columnCId INTEGER PRIMARY KEY,
+        $columnCnombre TEXT NOT NULL,
+      )
+      ''');
   }
 
   // Database helper methods:
@@ -151,6 +184,12 @@ class DatabaseHelper {
   Future<int> insert(txn.TransactionModel element) async {
     Database db = await database;
     int id = await db.insert(tableTransactions, element.toMap());
+    return id;
+  }
+
+  Future<int> insertCategory(ctgy.CategoryModel element) async {
+    Database db = await database;
+    int id = await db.insert(tableCategory, element.toMap());
     return id;
   }
 
@@ -170,10 +209,21 @@ class DatabaseHelper {
   Future<List<txn.TransactionModel>> getAllTransactions() async {
     Database db = await database;
     List<Map> res = await db.query(tableTransactions,
-        columns: [columnId, columnTitle, columnAmount, columnDate]);
+      columns: [columnId, columnTitle, columnAmount, columnDate]);
 
     List<txn.TransactionModel> list =
-        res.map((e) => txn.TransactionModel.fromMap(e)).toList();
+      res.map((e) => txn.TransactionModel.fromMap(e)).toList();
+
+    return list;
+  }
+
+  Future<List<ctgy.CategoryModel>> getAllCategory() async {
+    Database db = await database;
+    List<Map> res = await db.query(tableCategory,
+      columns: [columnCId, columnCnombre]);
+
+    List<ctgy.CategoryModel> list =
+      res.map((e) => ctgy.CategoryModel.fromMap(e)).toList();
 
     return list;
   }

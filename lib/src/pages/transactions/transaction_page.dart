@@ -15,7 +15,7 @@ class TransactionPageState extends State<TransactionPage> {
 
   void _updateUserTransactionsList() {
     Future<List<TransactionModel>> res =
-        DatabaseHelper.instance.getAllTransactions();
+      DatabaseHelper.instance.getAllTransactions();
 
     res.then((txnList) {
       setState(() {
@@ -25,19 +25,19 @@ class TransactionPageState extends State<TransactionPage> {
   }
 
   Future<void> _addNewTransaction(
-      String title, double amount, DateTime chosenDate) async {
-    final newTxn = TransactionModel(
-      DateTime.now().millisecondsSinceEpoch.toString(),
-      title,
-      amount,
-      chosenDate,
-    );
-    int res = await DatabaseHelper.instance.insert(newTxn);
+    String title, double amount, DateTime chosenDate) async {
+      final newTxn = TransactionModel(
+        DateTime.now().millisecondsSinceEpoch.toString(),
+        title,
+        amount,
+        chosenDate,
+      );
+      int res = await DatabaseHelper.instance.insert(newTxn);
 
-    if (res != 0) {
-      _updateUserTransactionsList();
+      if (res != 0) {
+        _updateUserTransactionsList();
+      }
     }
-  }
 
   Future<void> _deleteTransaction(String id) async {
     int res =

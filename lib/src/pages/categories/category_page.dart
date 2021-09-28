@@ -1,9 +1,6 @@
-//import 'dart:html';
-
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-
+import 'package:briefcase/src/models/categoria.dart';
+import 'package:briefcase/src/helpers/db_helper.dart';
 class CategoryPage extends StatefulWidget {
   @override
   CategoryPageState createState() => CategoryPageState();
@@ -20,43 +17,36 @@ class CategoryPageState extends State<CategoryPage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: TextFormField(
-                decoration: const InputDecoration(
-                  icon: Icon(Icons.account_tree),
-                  hintText: 'Ej: Ropa...',
-                  labelText: 'Categoria',
-                ),
-                validator: (String value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Rellene el campo';
-                  }
-                  return null;
-                }),
+              decoration: const InputDecoration(
+                icon: Icon(Icons.account_tree),
+                hintText: 'Ej: Ropa...',
+                labelText: 'Categoria',
+              ),
+              validator: (String value) {
+                if (value == null || value.isEmpty) {
+                  return 'Rellene el campo';
+                }
+                return null;
+              }
+            ),
           ),
           Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 5, horizontal: 16.0),
-              child: ElevatedButton(
-                onPressed: () {
-                  print('Categoria creada');
-                },
-                child: const Text('Guardar'),
-              )),
+            padding:
+                const EdgeInsets.symmetric(vertical: 5, horizontal: 16.0),
+            child: ElevatedButton(
+              onPressed: () {
+                print('Categoria creada');
+              },
+              child: const Text('Guardar'),
+            )),
           Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 1, horizontal: 16.0),
-              child: ElevatedButton(
-                child: const Text('Cerrar'),
-                onPressed: () => {Navigator.pop(context)},
-              ))
-        ]
-            // decoration: new BoxDecoration(
-            //   color: Colors.white,
-            //   borderRadius: new BorderRadius.only(
-            //     topLeft: const Radius.circular(25.0),
-            //     topRight: const Radius.circular(25.0),
-            //   ),
-            // ),
-            );
+            padding:
+                const EdgeInsets.symmetric(vertical: 1, horizontal: 16.0),
+            child: ElevatedButton(
+              child: const Text('Cerrar'),
+              onPressed: () => {Navigator.pop(context)},
+            ))
+        ]);
       },
     );
   }
