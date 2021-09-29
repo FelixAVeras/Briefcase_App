@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:briefcase/src/pages/categories/category_page.dart';
 import 'package:briefcase/src/pages/dashboard_page.dart';
 import 'package:briefcase/src/pages/login_page.dart';
