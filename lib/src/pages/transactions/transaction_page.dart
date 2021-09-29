@@ -98,16 +98,6 @@ class TransactionPageState extends State<TransactionPage> {
             backgroundColor: Colors.blue[800],
             title: Text('Transacciones'),
           ),
-          // body: TransactionHistoryPage(_userTransactions, _deleteTransaction),
-          // floatingActionButtonLocation:
-          //     FloatingActionButtonLocation.centerFloat,
-          // floatingActionButton: FloatingActionButton.extended(
-          //   icon: Icon(Icons.add),
-          //   label: Text('Nueva Transaccion'),
-          //   backgroundColor: Colors.blue[800],
-          //   onPressed: () => _startAddNewTransaction(context),
-          // ),
-
           body: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
