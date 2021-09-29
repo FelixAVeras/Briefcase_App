@@ -94,11 +94,7 @@ class _HomePageState extends State<HomePage> {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => LoginPage()))
             },
-<<<<<<< HEAD
-          ),
-=======
           )
->>>>>>> 3bdab2a86741f58f482fbbf804266d5c57c83e0b
         ],
       )),
       // bottomNavigationBar: BottomNavigationBar(
