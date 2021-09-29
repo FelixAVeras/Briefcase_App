@@ -15,7 +15,7 @@ class TransactionPageState extends State<TransactionPage> {
 
   void _updateUserTransactionsList() {
     Future<List<TransactionModel>> res =
-        DatabaseHelper.instance.getAllTransactions();
+      DatabaseHelper.instance.getAllTransactions();
 
     res.then((txnList) {
       setState(() {
@@ -25,19 +25,19 @@ class TransactionPageState extends State<TransactionPage> {
   }
 
   Future<void> _addNewTransaction(
-      String title, double amount, DateTime chosenDate) async {
-    final newTxn = TransactionModel(
-      DateTime.now().millisecondsSinceEpoch.toString(),
-      title,
-      amount,
-      chosenDate,
-    );
-    int res = await DatabaseHelper.instance.insert(newTxn);
+    String title, double amount, DateTime chosenDate) async {
+      final newTxn = TransactionModel(
+        DateTime.now().millisecondsSinceEpoch.toString(),
+        title,
+        amount,
+        chosenDate,
+      );
+      int res = await DatabaseHelper.instance.insert(newTxn);
 
-    if (res != 0) {
-      _updateUserTransactionsList();
+      if (res != 0) {
+        _updateUserTransactionsList();
+      }
     }
-  }
 
   Future<void> _deleteTransaction(String id) async {
     int res =
@@ -98,16 +98,6 @@ class TransactionPageState extends State<TransactionPage> {
             backgroundColor: Colors.blue[800],
             title: Text('Transacciones'),
           ),
-          // body: TransactionHistoryPage(_userTransactions, _deleteTransaction),
-          // floatingActionButtonLocation:
-          //     FloatingActionButtonLocation.centerFloat,
-          // floatingActionButton: FloatingActionButton.extended(
-          //   icon: Icon(Icons.add),
-          //   label: Text('Nueva Transaccion'),
-          //   backgroundColor: Colors.blue[800],
-          //   onPressed: () => _startAddNewTransaction(context),
-          // ),
-
           body: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,

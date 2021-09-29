@@ -1,13 +1,9 @@
-import 'dart:html';
-
 import 'package:briefcase/src/pages/categories/category_page.dart';
 import 'package:briefcase/src/pages/dashboard_page.dart';
 import 'package:briefcase/src/pages/login_page.dart';
 import 'package:briefcase/src/pages/perfil/profile_page.dart';
 import 'package:briefcase/src/pages/products/product_page.dart';
 import 'package:briefcase/src/pages/transactions/transaction_page.dart';
-import 'package:briefcase/src/pages/products/product_page.dart';
-import 'package:briefcase/src/pages/perfil/profile_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -89,22 +85,6 @@ class _HomePageState extends State<HomePage> {
             title: Text('Metas'),
             onTap: () => {Navigator.of(context).pop()},
           ),
-         
-          Divider(),
-          ListTile(
-            leading: Icon(Icons.credit_card),
-            title: Text('Tarjetas y Cuentas'),
-            onTap: () => {Navigator.of(context).pop()},
-          ),
-          Divider(),
-          ListTile(
-            leading: Icon(Icons.book),
-            title: Text('Productos'),
-            onTap: () => {
-              Navigator.of(context).pop(),
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ProductPage()))
-            },
-          ),
           Divider(),
           ListTile(
             leading: Icon(Icons.logout),
@@ -114,7 +94,7 @@ class _HomePageState extends State<HomePage> {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => LoginPage()))
             },
-          ),
+          )
         ],
       )),
       // bottomNavigationBar: BottomNavigationBar(

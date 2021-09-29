@@ -10,7 +10,6 @@ class Briefcase extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Briefcase',
-      // home: MyHomePage(),
       debugShowCheckedModeBanner: false,
       initialRoute: 'login',
       routes: {
