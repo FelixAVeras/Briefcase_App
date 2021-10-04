@@ -1,10 +1,4 @@
 class TransactionModel {
-  // int id;
-  // String titleTransaction;
-  // int amountTransaction;
-  // String dateTransaction;
-  // String typeTransaction;
-
   String id;
   String titleTransaction;
   double amountTransaction;
@@ -15,28 +9,8 @@ class TransactionModel {
   double get txnAmount => amountTransaction;
   DateTime get txnDateTime => dateTransaction;
 
-  TransactionModel(
-    this.id,
-    this.titleTransaction,
-    this.amountTransaction,
-    this.dateTransaction,
-    // this.typeTransaction
-  );
-
-  // Map<String, dynamic> toMap() {
-  //   return {
-  //     'id': id,
-  //     'titleTransaction': titleTransaction,
-  //     'amountTransaction': amountTransaction,
-  //     'dateTransaction': dateTransaction,
-  //     'typeTransaction': typeTransaction
-  //   };
-  // }
-
-  // @override
-  // String toString() {
-  //   return 'Trans{id: $id, transName: $titleTransaction, amount: $amountTransaction} type: $typeTransaction';
-  // }
+  TransactionModel(this.id, this.titleTransaction, this.amountTransaction,
+      this.dateTransaction);
 
   TransactionModel.fromMap(Map<String, dynamic> map) {
     id = map['id'].toString();

@@ -2,7 +2,17 @@ import 'package:briefcase/src/pages/home_page.dart';
 import 'package:briefcase/src/pages/register_page.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _loginPageState createState() => _loginPageState();
+}
+
+class _loginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
+  bool hidePassword = true;
+
+  bool isRemember = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,42 +32,76 @@ class LoginPage extends StatelessWidget {
                 padding: EdgeInsets.all(16.0),
                 child: Column(
                   children: [
-                    TextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                          icon: Icon(
-                            Icons.alternate_email,
-                            color: Colors.blue,
-                          ),
-                          labelText: 'Correo Electronico',
-                          hintText: 'ejemplo@ejemplo.com'),
-                    ),
-                    SizedBox(height: 22.0),
-                    TextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      // obscureText: hideShowPass,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                          icon: Icon(
-                            Icons.lock_outline,
-                            color: Colors.blue,
-                          ),
-                          labelText: 'Contraseña'),
-                    ),
-                    SizedBox(height: 28.0),
-                    ElevatedButton(
-                        child: Text('Entrar'),
-                        style: ElevatedButton.styleFrom(
-                            onPrimary: Colors.white,
-                            primary: Colors.blue[800],
-                            padding: EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 120)),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomePage()));
-                        }),
+                    Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            TextFormField(
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: InputDecoration(
+                                  icon: Icon(
+                                    Icons.alternate_email,
+                                    color: Colors.blue,
+                                  ),
+                                  labelText: 'Correo Electronico',
+                                  hintText: 'ejemplo@ejemplo.com'),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Introduzca un correo electronico valido';
+                                }
+                                return null;
+                              },
+                            ),
+                            SizedBox(height: 22.0),
+                            TextFormField(
+                              obscureText: hidePassword,
+                              decoration: InputDecoration(
+                                  icon: Icon(
+                                    Icons.lock_outline,
+                                    color: Colors.blue,
+                                  ),
+                                  labelText: 'Contraseña',
+                                  suffix: InkWell(
+                                    onTap: togglePasswordView,
+                                    child: Icon(hidePassword
+                                        ? Icons.visibility
+                                        : Icons.visibility_off),
+                                  )),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Introduzca una contraseña';
+                                }
+                                return null;
+                              },
+                            ),
+                            SizedBox(height: 14.0),
+                            SwitchListTile(
+                              value: isRemember,
+                              onChanged: (value) {
+                                setState(() {
+                                  isRemember = value;
+                                });
+                              },
+                              title: Text('Recordar mis Datos'),
+                            ),
+                            SizedBox(height: 28.0),
+                            ElevatedButton(
+                                child: Text('Entrar'),
+                                style: ElevatedButton.styleFrom(
+                                    onPrimary: Colors.white,
+                                    primary: Colors.blue[800],
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 15, horizontal: 120)),
+                                onPressed: () {
+                                  if (validatedForm()) {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => HomePage()));
+                                  }
+                                }),
+                          ],
+                        )),
                     SizedBox(height: 20.0),
                     TextButton(
                       child: Text('Registrar Usuario'),
@@ -105,5 +149,23 @@ class LoginPage extends StatelessWidget {
             )
           ],
         ));
+  }
+
+  bool validatedForm() {
+    final form = _formKey.currentState;
+
+    if (form.validate()) {
+      form.save();
+
+      return true;
+    }
+
+    return false;
+  }
+
+  void togglePasswordView() {
+    setState(() {
+      hidePassword = !hidePassword;
+    });
   }
 }

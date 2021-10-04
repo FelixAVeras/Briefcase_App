@@ -70,6 +70,7 @@ class ProfilePagoState extends State<ProfilePago> {
               ),
             ),
           ),
+          SizedBox(height: 22.0),
           Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 5, horizontal: 16.0),
@@ -78,7 +79,7 @@ class ProfilePagoState extends State<ProfilePago> {
                     primary: Colors.green,
                     minimumSize: Size(150, 50),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30))),
+                        borderRadius: BorderRadius.circular(10.0))),
                 onPressed: () {},
                 child: const Text('Guardar'),
               )),
@@ -90,7 +91,7 @@ class ProfilePagoState extends State<ProfilePago> {
                       primary: Colors.red,
                       minimumSize: Size(150, 50),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30))),
+                          borderRadius: BorderRadius.circular(10.0))),
                   child: const Text('Eliminar'),
                   onPressed: () => {Navigator.pop(context)}))
         ]
@@ -122,7 +123,7 @@ class ProfilePagoState extends State<ProfilePago> {
                       primary: Colors.green,
                       minimumSize: Size(150, 50),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30))),
+                          borderRadius: BorderRadius.circular(10.0))),
                   onPressed: () => _openModal(),
                   child: const Text('Crear / importar contacto'),
                 ),

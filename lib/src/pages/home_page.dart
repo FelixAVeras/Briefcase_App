@@ -1,14 +1,9 @@
-import 'dart:html';
-
 import 'package:briefcase/src/pages/categories/category_page.dart';
 import 'package:briefcase/src/pages/dashboard_page.dart';
-import 'package:briefcase/src/pages/history_page.dart';
 import 'package:briefcase/src/pages/login_page.dart';
 import 'package:briefcase/src/pages/perfil/profile_page.dart';
 import 'package:briefcase/src/pages/products/product_page.dart';
 import 'package:briefcase/src/pages/transactions/transaction_page.dart';
-import 'package:briefcase/src/pages/products/product_page.dart';
-import 'package:briefcase/src/pages/perfil/profile_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -92,31 +87,6 @@ class _HomePageState extends State<HomePage> {
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.access_time),
-            title: Text('Historial'),
-            onTap: () => {
-              Navigator.of(context).pop(),
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => HistoryPage()))
-            },
-          ),
-          Divider(),
-          ListTile(
-            leading: Icon(Icons.credit_card),
-            title: Text('Tarjetas y Cuentas'),
-            onTap: () => {Navigator.of(context).pop()},
-          ),
-          Divider(),
-          ListTile(
-            leading: Icon(Icons.book),
-            title: Text('Productos'),
-            onTap: () => {
-              Navigator.of(context).pop(),
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ProductPage()))
-            },
-          ),
-          Divider(),
-          ListTile(
             leading: Icon(Icons.logout),
             title: Text('Cerrar Sesión'),
             onTap: () => {
@@ -124,7 +94,7 @@ class _HomePageState extends State<HomePage> {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => LoginPage()))
             },
-          ),
+          )
         ],
       )),
       // bottomNavigationBar: BottomNavigationBar(
@@ -145,32 +115,4 @@ class _HomePageState extends State<HomePage> {
       // ),
     );
   }
-
-  // Widget _loadPage(int currentPage) {
-  //   switch (currentPage) {
-  //     case 0:
-  //       return DashboardPage();
-  //     case 1:
-  //       return HistoryPage();
-
-  //     default:
-  //       return DashboardPage();
-  //   }
-  // }
-
-  // Widget _customBottomNavigationBar() {
-  //   return BottomNavigationBar(
-  //     currentIndex: currentIndex,
-  //     onTap: (index) {
-  //       setState(() {
-  //         currentIndex = index;
-  //       });
-  //     },
-  //     items: [
-  //       BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
-  //       BottomNavigationBarItem(
-  //           icon: Icon(Icons.access_time), label: 'Historial')
-  //     ],
-  //   );
-  // }
 }

@@ -1,6 +1,26 @@
+import 'package:briefcase/src/models/transaction.dart';
 import 'package:flutter/material.dart';
 
-class DashboardPage extends StatelessWidget {
+class DashboardPage extends StatefulWidget {
+  @override
+  _DashboardPageState createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends State<DashboardPage> {
+  List<TransactionModel> _userTransactions = [];
+  bool _showChart = false;
+
+  List<TransactionModel> get _recentTransactions {
+    DateTime lastDayOfPrevWeek = DateTime.now().subtract(Duration(days: 6));
+    lastDayOfPrevWeek = DateTime(
+        lastDayOfPrevWeek.year, lastDayOfPrevWeek.month, lastDayOfPrevWeek.day);
+    return _userTransactions.where((element) {
+      return element.txnDateTime.isAfter(
+        lastDayOfPrevWeek,
+      );
+    }).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
