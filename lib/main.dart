@@ -11,7 +11,7 @@ class Briefcase extends StatelessWidget {
     return MaterialApp(
       title: 'Briefcase',
       debugShowCheckedModeBanner: false,
-      initialRoute: 'home',
+      initialRoute: 'login',
       routes: {
         'login': (BuildContext context) => LoginPage(),
         'home': (BuildContext context) => HomePage()
