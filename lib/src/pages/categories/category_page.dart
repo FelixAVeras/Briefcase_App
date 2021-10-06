@@ -25,16 +25,16 @@ class CategoryPageState extends State<CategoryPage> {
 
     return Scaffold(
       appBar: AppBar(
-          title: Text('Categorias'),
-          centerTitle: true,
-          backgroundColor: Colors.blue[800]),
+        title: Text('Categorias'),
+        centerTitle: true,
+        backgroundColor: Colors.blue[800]),
       body: new Container(
         child: FutureBuilder(
           future: loadList(),
           builder: (context, snapshot) {
             return categoryList.length > 0
-                ? new CategoryList(cats: categoryList)
-                : new Center(child: Text('No hay datos que mostrar'));
+              ? new CategoryList(cats: categoryList)
+              : new Center(child: Text('No hay datos que mostrar'));
           },
         ),
       ),
@@ -61,46 +61,51 @@ class CategoryPageState extends State<CategoryPage> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: TextFormField(
-                      decoration: const InputDecoration(
-                        icon: Icon(Icons.account_tree),
-                        hintText: 'Ej: Ropa...',
-                        labelText: 'Categoria',
-                      ),
-                      controller: categoryName,
-                      validator: (String value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Rellene el campo';
-                        }
-                        return null;
-                      }),
+                    decoration: const InputDecoration(
+                      icon: Icon(Icons.account_tree),
+                      hintText: 'Ej: Ropa...',
+                      labelText: 'Categoria',
+                    ),
+                    controller: categoryName,
+                    validator: (String value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Rellene el campo';
+                      }
+                      return null;
+                    }
+                  ),
                 ),
                 Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 5, horizontal: 16.0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        print('Categoria creada');
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 5, horizontal: 16.0
+                  ),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      print('Categoria creada');
 
-                        if (_formKey.currentState.validate()) {
-                          _formKey.currentState.save();
-                          final initDB = dbconn.initDB();
-                          initDB.then((db) async {
-                            await dbconn.insertCategory(
-                                CategoryModel(name: categoryName.text));
-                          });
+                      if (_formKey.currentState.validate()) {
+                        _formKey.currentState.save();
+                        final initDB = dbconn.initDB();
+                        initDB.then((db) async {
+                          await dbconn.insertCategory(
+                            CategoryModel(name: categoryName.text));
+                        });
 
-                          Navigator.pop(context);
-                        }
-                      },
-                      child: const Text('Guardar'),
-                    )),
+                        Navigator.pop(context);
+                      }
+                    },
+                    child: const Text('Guardar'),
+                  )
+                ),
                 Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 1, horizontal: 16.0),
-                    child: ElevatedButton(
-                      child: const Text('Cerrar'),
-                      onPressed: () => {Navigator.pop(context)},
-                    ))
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 1, horizontal: 16.0
+                  ),
+                  child: ElevatedButton(
+                    child: const Text('Cerrar'),
+                    onPressed: () => {Navigator.pop(context)},
+                  )
+                )
               ],
             ),
           )

@@ -1,14 +1,14 @@
-import 'package:briefcase/src/models/categoria.dart';
+import 'package:briefcase/src/models/productos.dart';
 import 'package:flutter/material.dart';
 
-class CategoryList extends StatelessWidget {
-  final List<CategoryModel> cats;
-  CategoryList({Key key, this.cats}) : super(key: key);
+class ProductoList extends StatelessWidget {
+  final List<ProductoModel> prod;
+  ProductoList({Key key, this.prod}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: cats == null ? 0 : cats.length,
+      itemCount: prod == null ? 0 : prod.length,
       itemBuilder: (BuildContext context, int index) {
         return Card(
           child: InkWell(
@@ -20,7 +20,7 @@ class CategoryList extends StatelessWidget {
               // );
             },
             child: ListTile(
-              title: Text(cats[index].ctgyname),
+              title: Text(prod[index].prodNombre),
             ),
           )
         );
