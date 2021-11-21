@@ -54,6 +54,7 @@ class ProductAddState extends State<ProductAdd> {
                       labelText: 'Precio unitario',
                     ),
                     controller: productoprecio,
+                    keyboardType: TextInputType.number,
                     validator: (String value) {
                       if (value == null) {
                         return 'Rellene el campo';
@@ -70,6 +71,7 @@ class ProductAddState extends State<ProductAdd> {
                       labelText: 'Costo unitario',
                     ),
                     controller: productocosto,
+                    keyboardType: TextInputType.number,
                     validator: (String value) {
                       if (value == null) {
                         return 'Rellene el campo';

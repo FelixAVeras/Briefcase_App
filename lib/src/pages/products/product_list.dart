@@ -1,4 +1,5 @@
 import 'package:briefcase/src/models/productos.dart';
+import 'package:briefcase/src/pages/products/product_details.dart';
 import 'package:flutter/material.dart';
 
 class ProductoList extends StatelessWidget {
@@ -8,23 +9,21 @@ class ProductoList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: prod == null ? 0 : prod.length,
-      itemBuilder: (BuildContext context, int index) {
-        return Card(
-          child: InkWell(
+        itemCount: prod == null ? 0 : prod.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Card(
+              child: InkWell(
             onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //       builder: (context) => DetailWidget(trans[index])),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ProductDetailPage(prod[index])),
+              );
             },
             child: ListTile(
               title: Text(prod[index].prodNombre),
             ),
-          )
-        );
-      }
-    );
+          ));
+        });
   }
 }

@@ -9,6 +9,7 @@ class ProductPage extends StatefulWidget {
   @override
   ProductPageState createState() => ProductPageState();
 }
+
 class ProductPageState extends State<ProductPage> {
   DbConnProd dbconn = DbConnProd();
   List<ProductoModel> productoList;
@@ -20,33 +21,33 @@ class ProductPageState extends State<ProductPage> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Products'),
-        centerTitle: true,
-        backgroundColor: Colors.blue[800],
-      ),
-      body: new Container(
-        child: FutureBuilder(
-          future: loadListProd(),
-          builder: (context, snapshot){
-            return productoList.length > 0
-            ? new ProductoList(prod: productoList)
-            : new Center(child: Text('No hay datos que mostrar'));
-          },
+        appBar: AppBar(
+          title: Text('Products'),
+          centerTitle: true,
+          backgroundColor: Colors.blue[800],
         ),
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        icon: Icon(Icons.add),
-        label: Text('Crear producto'),
-        backgroundColor: Colors.green,
-        onPressed: () {
-          Navigator.push(
-            context, 
-            MaterialPageRoute(builder: (context) => ProductAdd()),
-          );
-        },
-      )
-    );
+        body: new Container(
+          child: FutureBuilder(
+            future: loadListProd(),
+            builder: (context, snapshot) {
+              return productoList.length > 0
+                  ? new ProductoList(prod: productoList)
+                  : new Center(child: Text('No hay datos que mostrar'));
+            },
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: FloatingActionButton.extended(
+          icon: Icon(Icons.add),
+          label: Text('Crear producto'),
+          backgroundColor: Colors.blue[800],
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProductAdd()),
+            );
+          },
+        ));
   }
 
   Future loadListProd() {

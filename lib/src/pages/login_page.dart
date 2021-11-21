@@ -74,16 +74,16 @@ class _loginPageState extends State<LoginPage> {
                                 return null;
                               },
                             ),
-                            SizedBox(height: 14.0),
-                            SwitchListTile(
-                              value: isRemember,
-                              onChanged: (value) {
-                                setState(() {
-                                  isRemember = value;
-                                });
-                              },
-                              title: Text('Recordar mis Datos'),
-                            ),
+                            // SizedBox(height: 14.0),
+                            // SwitchListTile(
+                            //   value: isRemember,
+                            //   onChanged: (value) {
+                            //     setState(() {
+                            //       isRemember = value;
+                            //     });
+                            //   },
+                            //   title: Text('Recordar mis Datos'),
+                            // ),
                             SizedBox(height: 28.0),
                             ElevatedButton(
                                 child: Text('Entrar'),
