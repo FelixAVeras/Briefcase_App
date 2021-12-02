@@ -15,11 +15,11 @@ class StorePage extends StatelessWidget {
             bottom: TabBar(tabs: [
               Tab(
                 text: 'Ventas',
-                icon: Icon(Icons.attach_money),
+                // icon: Icon(Icons.attach_money),
               ),
               Tab(
                 text: 'Inventario',
-                icon: Icon(Icons.all_inbox_sharp),
+                // icon: Icon(Icons.all_inbox_sharp),
               ),
             ], indicatorWeight: 5, indicatorColor: Colors.white),
           ),
